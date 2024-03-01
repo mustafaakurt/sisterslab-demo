@@ -3,10 +3,9 @@ package com.mustafaakurt.sisterslabdemo.controller;
 import com.mustafaakurt.sisterslabdemo.model.Customer;
 import com.mustafaakurt.sisterslabdemo.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customers")
@@ -19,5 +18,14 @@ public class CustomerController {
     @PostMapping()
     public Customer addCustomer(@RequestBody Customer customer) {
         return customerService.addCustomer(customer);
+    }
+    @GetMapping()
+    public List<Customer> getCustomers() {
+        return customerService.getCustomers();
+    }
+
+    @GetMapping("/{id}")
+    public Customer getCustomerById(@PathVariable("id") long id) {
+        return customerService.getCustomerById(id);
     }
 }
