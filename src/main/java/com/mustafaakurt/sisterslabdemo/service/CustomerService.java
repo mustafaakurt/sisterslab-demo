@@ -30,4 +30,17 @@ public class CustomerService {
             return null;
         }
     }
+
+    public String updateCustomer(long id, Customer customer) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(id);
+        if (optionalCustomer.isPresent()) {
+            Customer oldCustomer = optionalCustomer.get();
+            oldCustomer.setFirstName(customer.getFirstName());
+            customerRepository.save(oldCustomer);
+            return "Customer updated successfully";
+        }else {
+            log.info("Customer not found with id: " + id);
+            return "Customer not found with id: " + id;
+        }
+    }
 }
