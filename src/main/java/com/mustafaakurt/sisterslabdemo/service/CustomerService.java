@@ -43,4 +43,8 @@ public class CustomerService {
             return "Customer not found with id: " + id;
         }
     }
+
+    public void deleteCustomerById(long id) {
+        customerRepository.deleteById(id);
+    }
 }
